@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SampleProject</string>
+    <string name="boyd_stiphend_eligibility">BOYD Stiphend Eligibility</string>
+    <string name="device_enrolled_in_mdm">Device Enrolled in MDM</string>
+</resources>
