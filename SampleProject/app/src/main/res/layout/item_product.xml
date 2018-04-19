@@ -116,7 +116,7 @@
             android:layout_margin="8dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:id="@+id/subLayout"
+            android:id="@+id/boydLayout"
             android:layout_gravity="center"
             android:orientation="vertical">
             <TextView

@@ -76,8 +76,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         LinearLayout mdmLayout;
         @BindView(R.id.viewLine3)
         View viewLine3;
-        @BindView(R.id.subLayout)
-        LinearLayout subLayout;
+        @BindView(R.id.boydLayout)
+        LinearLayout boydLayout;
 
         public MyViewHolder(View view) {
             super(view);
@@ -123,7 +123,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.smartPhoneLayout.setVisibility(View.VISIBLE);
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
-                    holder.subLayout.setVisibility(View.GONE);
+                    holder.boydLayout.setVisibility(View.GONE);
                     break;
                 case 2:
                     holder.wirelessLayout.setVisibility(View.GONE);
@@ -131,7 +131,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.smartPhoneLayout.setVisibility(View.VISIBLE);
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
-                    holder.subLayout.setVisibility(View.GONE);
+                    holder.boydLayout.setVisibility(View.GONE);
                     break;
                 case 3:
                     holder.wirelessLayout.setVisibility(View.GONE);
@@ -140,12 +140,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
                     holder.viewLine3.setVisibility(View.VISIBLE);
-                    holder.subLayout.setVisibility(View.VISIBLE);
+                    holder.boydLayout.setVisibility(View.VISIBLE);
                     break;
                 default:
                     holder.mdmLayout.setVisibility(View.GONE);
                     holder.iv_tickIcon.setVisibility(View.GONE);
-                    holder.subLayout.setVisibility(View.VISIBLE);
+                    holder.boydLayout.setVisibility(View.VISIBLE);
                     break;
 //
             }
