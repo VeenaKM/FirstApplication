@@ -31,10 +31,10 @@ public class JobSchedulerActivity extends Activity {
 //        builder.setPeriodic(5000);
 
 //        builder.setMinimumLatency(1 * 1000); // wait at least
-//        builder.setOverrideDeadline(3 * 1000); // maximum delay
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require  network
 //        builder.setRequiresDeviceIdle(true); // device should be idle
         builder.setRequiresCharging(true); // we don't care if the device is charging or not
+         builder.setOverrideDeadline(50000); //the job will be executed anyway after 50 sec
 
         jobInfo = builder.build();
 
