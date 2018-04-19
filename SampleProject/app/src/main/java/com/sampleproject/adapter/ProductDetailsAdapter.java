@@ -107,6 +107,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 
         if (holder1 instanceof MyViewHolder) {
+
             MyViewHolder holder = (MyViewHolder) holder1;
             holder.txtProductType.setText(productDataModel.getProductType());
             holder.txtviewProductName.setText(productDataModel.getProductName());
@@ -163,7 +164,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             case "SmartPhone":
             case "MDM":
                 return 1;
-               default:
+            default:
                    return 2;
 
         }

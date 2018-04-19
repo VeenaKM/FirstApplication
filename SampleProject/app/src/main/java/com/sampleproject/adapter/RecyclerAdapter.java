@@ -105,7 +105,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         for (int i=0;i<subList.size();i++) {
             ProductDataModel productModel = subList.get(i);
-//
+
+            // show views depending on data
             switch (dataModel.getNumber()) {
 
                 case 1:
@@ -144,6 +145,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     break;
 //
             }
+
+            // show data on textviews
             switch (productModel.getProductType()) {
 
                 case "WireLess":
