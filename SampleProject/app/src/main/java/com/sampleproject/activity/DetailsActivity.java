@@ -2,16 +2,21 @@ package com.sampleproject.activity;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.sampleproject.R;
 import com.sampleproject.adapter.ProductDetailsAdapter;
 import com.sampleproject.dataModel.DataModel;
+import com.sampleproject.service.JobSchedulerService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +49,9 @@ public class DetailsActivity extends Activity {
 
         //initialize views
         initViews();
+
+        initListeners();
+
         showData(); // display fetched data
 
     }
@@ -53,6 +61,49 @@ public class DetailsActivity extends Activity {
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
     }
+
+    private void initListeners() {
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            GestureDetector gestureDetector = new GestureDetector(DetailsActivity.this, new GestureDetector.SimpleOnGestureListener() {
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+            });
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && gestureDetector.onTouchEvent(e)) {
+                    int position = rv.getChildAdapterPosition(child);
+
+                    gotoJobSchedulerActivity();
+
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+    }
+
+    private void gotoJobSchedulerActivity() {
+        Intent intent = new Intent(DetailsActivity.this, JobSchedulerActivity.class);
+        startActivity(intent);
+    }
+
+
 
     private void showData() {
 

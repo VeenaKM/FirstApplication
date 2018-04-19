@@ -3,4 +3,6 @@
     <string name="boyd_stiphend_eligibility">BOYD Stiphend Eligibility</string>
     <string name="device_enrolled_in_mdm">Device Enrolled in MDM</string>
     <string name="notifications">Notifications</string>
+    <string name="schedule_job">Schedule Job</string>
+    <string name="cancel_job">Cancel Job</string>
 </resources>

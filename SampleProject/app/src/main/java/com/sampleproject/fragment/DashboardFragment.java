@@ -60,17 +60,19 @@ public class DashboardFragment extends Fragment {
 
         initViews();
 
+        initListeners();
+
         showData();
 
         return dashboardView;
     }
-
     private void initViews() {
-
         mRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
+    }
 
+    private void initListeners() {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -117,9 +119,8 @@ public class DashboardFragment extends Fragment {
 
             }
         });
-
-
     }
+
 
     private void showData() {
 
