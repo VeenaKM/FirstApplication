@@ -19,7 +19,7 @@ public class JobSchedulerService extends JobService {
     public boolean onStartJob(final JobParameters params) {
         this.params = params;
 
-        // start background long task here
+        // start background long task here run it on different thread
         doIt = new DoItTask()
         {
             @Override
@@ -31,7 +31,7 @@ public class JobSchedulerService extends JobService {
             }
         };
         doIt.execute();
-        return true;   // return false if not background task
+        return true;   // return false if not different thread
     }
 
     @Override

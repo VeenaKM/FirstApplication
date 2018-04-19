@@ -5,4 +5,7 @@
     <string name="notifications">Notifications</string>
     <string name="schedule_job">Schedule Job</string>
     <string name="cancel_job">Cancel Job</string>
+    <string name="view">View</string>
+    <string name="support">Support</string>
+    <string name="cost">Cost</string>
 </resources>
