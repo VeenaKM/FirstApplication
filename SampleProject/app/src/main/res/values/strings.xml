@@ -8,4 +8,11 @@
     <string name="view">View</string>
     <string name="support">Support</string>
     <string name="cost">Cost</string>
+    <string name="shared_transition">Shared Transition</string>
+
+    <string name="default_text">Shared Element Transitions are a great way of implementing Material motion and adding some
+        flair to your app. Shared element transitions help the user on their journey through your app by giving them a
+        focal point as they go from screen to screen. They can make your app feel like a whole, rather than a bunch of
+        separate screens slapped together. They shouldn't be abused though, in some case too many elements darting all
+        over the screen may make the user feel a bit motion sick!</string>
 </resources>

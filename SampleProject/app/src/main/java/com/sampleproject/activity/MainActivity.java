@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.sampleproject.R;
 import com.sampleproject.fragment.DashboardFragment;
+import com.sampleproject.fragment.FeedFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private void switchToFragment3()
     {
-//        FragmentManager manager = getSupportFragmentManager();
-//        manager.beginTransaction().replace(R.id.container, new FeedFragment()).commit();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, new FeedFragment()).commit();
     }
     private void switchToFragment4()
     {
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 switchToFragment2();
                 break;
             case R.id.navigation_feed:
-                //  switchToFragment2();
+                  switchToFragment3();
                 break;
             case R.id.navigation_settings:
                 //   switchToFragment2();

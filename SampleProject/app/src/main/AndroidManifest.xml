@@ -20,6 +20,8 @@
         <activity android:name=".activity.DetailsActivity"/>
         <activity android:name=".activity.JobSchedulerActivity" />
 
+        <activity android:name=".activity.SimpleActivityA"/>
+        <activity android:name=".activity.SimpleActivityB"/>
         <service android:name=".service.JobSchedulerService"
             android:label="Word Service"
             android:permission="android.permission.BIND_JOB_SERVICE" >
