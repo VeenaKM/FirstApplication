@@ -5,6 +5,8 @@ package com.sampleproject.adapter;
  */
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,64 +23,70 @@ import com.sampleproject.fragment.DashboardFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
 
-     ArrayList<DataModel> mainList = new ArrayList<>();
+    ArrayList<DataModel> mainList = new ArrayList<>();
     DashboardFragment dashboardFragment;
+
     private RecyclerView.ViewHolder holder;
     Context context;
 
 
-    public RecyclerAdapter(ArrayList<DataModel> mainList, DashboardFragment dashboardFragment,Context context) {
+    public RecyclerAdapter(ArrayList<DataModel> mainList, DashboardFragment dashboardFragment, Context context) {
         this.mainList = mainList;
         this.dashboardFragment = dashboardFragment;
-        this.context=context;
+        this.context = context;
     }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-
-        LinearLayout root;
-        TextView txtviewTitle,txtViewNumber,txtSmartPhoneName,txtSmartPhoneDetail;
-        RecyclerView mRecyclerView;
-        RecyclerView.LayoutManager layoutManager;
-        LinearLayout subLayout,mdmLayout,wirelessLayout;
-        TextView txtviewProductName,txtViewDetail,txtMdmProductName,txtMdmDetails;
-        ImageView imageViewIcon;
-        View viewLine1,viewLine2,viewLine3;
+        @BindView(R.id.number)
+        TextView tv_number;
+        @BindView(R.id.title)
+        TextView tv_title;
+        @BindView(R.id.productName)
+        TextView tv_productName;
+        @BindView(R.id.imageViewIcon)
+        ImageView iv_tickIcon;
+        @BindView(R.id.productDetail)
+        TextView tv_productDetail;
+        @BindView(R.id.wirelessLayout)
+        LinearLayout wirelessLayout;
+        @BindView(R.id.viewLine1)
+        View viewLine1;
+        @BindView(R.id.smartPhoneName)
+        TextView tv_smartPhoneName;
+        @BindView(R.id.smartPhoneDetail)
+        TextView tv_smartPhoneDetail;
+        @BindView(R.id.smartPhoneLayout)
         LinearLayout smartPhoneLayout;
+        @BindView(R.id.viewLine2)
+        View viewLine2;
+        @BindView(R.id.mdmProductName)
+        TextView tv_mdmProductName;
+        @BindView(R.id.mdmDetails)
+        TextView tv_mdmDetails;
+        @BindView(R.id.mdmLayout)
+        LinearLayout mdmLayout;
+        @BindView(R.id.viewLine3)
+        View viewLine3;
+        @BindView(R.id.subLayout)
+        LinearLayout subLayout;
 
         public MyViewHolder(View view) {
             super(view);
-            txtviewTitle = (TextView) view.findViewById(R.id.title);
-            mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-            txtViewNumber = (TextView) view.findViewById(R.id.number);
-            root = (LinearLayout) view.findViewById(R.id.root);
-
-            txtviewProductName = (TextView) view.findViewById(R.id.productName);
-            txtViewDetail = (TextView) view.findViewById(R.id.productDetail);
-            viewLine1 = (View) view.findViewById(R.id.viewLine1);
-            viewLine2 = (View) view.findViewById(R.id.viewLine2);
-            viewLine3 = (View) view.findViewById(R.id.viewLine3);
-            imageViewIcon = (ImageView) view.findViewById(R.id.imageViewIcon);
-            wirelessLayout = (LinearLayout) view.findViewById(R.id.wirelessLayout);
-            subLayout = (LinearLayout) view.findViewById(R.id.subLayout);
-            smartPhoneLayout = (LinearLayout) view.findViewById(R.id.subLayout);
-            mdmLayout= (LinearLayout) view.findViewById(R.id.mdmLayout);
-            txtMdmProductName = (TextView) view.findViewById(R.id.txtMdmProductName);
-            txtMdmDetails = (TextView) view.findViewById(R.id.txtMdmDetails);
-
-            txtSmartPhoneName= (TextView) view.findViewById(R.id.smartPhoneName);
-            txtSmartPhoneDetail= (TextView) view.findViewById(R.id.smartPhoneDetail);
-
-
+            ButterKnife.bind(this, view);
         }
     }
 
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_item_layout, parent, false);
@@ -91,19 +99,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         DataModel dataModel = mainList.get(position);
-        holder.txtviewTitle.setText(dataModel.getTitle());
-        holder.txtViewNumber.setText(dataModel.getNumber()+"/"+mainList.size());
+        holder.tv_title.setText(dataModel.getTitle());
+        holder.tv_number.setText(dataModel.getNumber() + "/" + mainList.size());
 
-        displayProductDeails(holder,dataModel,position);
+        displayProductDeails(holder, dataModel, position);
 
     }
 
     private void displayProductDeails(MyViewHolder holder, DataModel dataModel, int position) {
-        ArrayList<ProductDataModel> subList=dataModel.getProduct();
-        Log.e(" product=",""+dataModel.getProduct());
+        ArrayList<ProductDataModel> subList = dataModel.getProduct();
+        Log.e(" product=", "" + dataModel.getProduct());
 
 
-        for (int i=0;i<subList.size();i++) {
+        for (int i = 0; i < subList.size(); i++) {
             ProductDataModel productModel = subList.get(i);
 
             // show views depending on data
@@ -115,7 +123,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.smartPhoneLayout.setVisibility(View.VISIBLE);
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
-                    holder.imageViewIcon.setVisibility(View.VISIBLE);
                     holder.subLayout.setVisibility(View.GONE);
                     break;
                 case 2:
@@ -124,7 +131,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.smartPhoneLayout.setVisibility(View.VISIBLE);
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
-                    holder.imageViewIcon.setVisibility(View.VISIBLE);
                     holder.subLayout.setVisibility(View.GONE);
                     break;
                 case 3:
@@ -133,14 +139,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     holder.smartPhoneLayout.setVisibility(View.VISIBLE);
                     holder.viewLine2.setVisibility(View.VISIBLE);
                     holder.mdmLayout.setVisibility(View.VISIBLE);
-                    holder.imageViewIcon.setVisibility(View.VISIBLE);
                     holder.viewLine3.setVisibility(View.VISIBLE);
                     holder.subLayout.setVisibility(View.VISIBLE);
                     break;
                 default:
-                    holder.imageViewIcon.setVisibility(View.GONE);
                     holder.mdmLayout.setVisibility(View.GONE);
-                    holder.txtViewDetail.setVisibility(View.GONE);
+                    holder.iv_tickIcon.setVisibility(View.GONE);
                     holder.subLayout.setVisibility(View.VISIBLE);
                     break;
 //
@@ -150,18 +154,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             switch (productModel.getProductType()) {
 
                 case "WireLess":
-                    holder.txtviewProductName.setText(productModel.getProductName());
-                    holder.txtViewDetail.setText(productModel.getDetails());
+                    holder.tv_productName.setText(productModel.getProductName());
+                    holder.tv_productDetail.setText(productModel.getDetails());
 
                     break;
                 case "MDM":
-                    holder.txtMdmProductName.setText(productModel.getProductName());
-                    holder.txtMdmDetails.setText(productModel.getDetails());
+                    holder.tv_mdmProductName.setText(productModel.getProductName());
+                    holder.tv_mdmDetails.setText(productModel.getDetails());
 
                     break;
                 case "SmartPhone":
-                    holder.txtSmartPhoneName.setText(productModel.getProductName());
-                    holder.txtSmartPhoneDetail.setText(productModel.getDetails());
+                    holder.tv_smartPhoneName.setText(productModel.getProductName());
+                    holder.tv_smartPhoneDetail.setText(productModel.getDetails());
 
                     break;
             }
@@ -169,16 +173,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
 
 
-
-        }
-
-
-
+    }
 
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return mainList.size();
     }
 }

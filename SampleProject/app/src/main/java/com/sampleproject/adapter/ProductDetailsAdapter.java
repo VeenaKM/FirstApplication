@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,6 +23,8 @@ import com.sampleproject.dataModel.ProductDataModel;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -38,62 +41,71 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        CardView card_view;
-        TextView txtProductType;
-        TextView txtviewProductName,txtViewDetail1,txtViewDetail2,txtReviewPolicy;
-        ImageView imageView_product,image_air;
-        Button btnView,btnSupport,btnCost;
-        LinearLayout detailsLayout;
-        RelativeLayout relativeLayout,boydLayout,wirelessLayout;
-        TextView txtMdmProductName,txtMdmDetails;
+        @BindView(R.id.productImage)
+        ImageView iv_productImage;
+        @BindView(R.id.productType)
+        TextView tv_productType;
+        @BindView(R.id.productName)
+        TextView tv_productName;
+        @BindView(R.id.ic_air)
+        ImageView iv_airImage;
+        @BindView(R.id.mdmProductName)
+        TextView tv_mdmProductName;
+        @BindView(R.id.mdmDetails)
+        TextView tv_mdmDetails;
+        @BindView(R.id.layout)
+        RelativeLayout relativelayout;
+        @BindView(R.id.detail1)
+        TextView tv_details1;
+        @BindView(R.id.detail2)
+        TextView tv_detail2;
+        @BindView(R.id.btn_view)
+        Button btnView;
+        @BindView(R.id.btn_support)
+        Button btnSupport;
+        @BindView(R.id.btn_cost)
+        Button btnCost;
 
 
         public MyViewHolder(View view) {
             super(view);
-            txtviewProductName = (TextView) view.findViewById(R.id.productName);
-            txtViewDetail1 = (TextView) view.findViewById(R.id.detail1);
-            imageView_product = (ImageView) view.findViewById(R.id.productImage);
-            txtProductType = (TextView) view.findViewById(R.id.productType);
-            txtViewDetail2 = (TextView) view.findViewById(R.id.detail2);
-            btnCost = (Button) view.findViewById(R.id.btn_cost);
-            btnSupport = (Button) view.findViewById(R.id.btn_support);
-            btnView = (Button) view.findViewById(R.id.btn_view);
-            relativeLayout= (RelativeLayout) view.findViewById(R.id.layout);
-            txtMdmProductName = (TextView) view.findViewById(R.id.txtMdmProductName);
-            txtMdmDetails = (TextView) view.findViewById(R.id.txtMdmDetails);
-            detailsLayout = (LinearLayout) view.findViewById(R.id.detailsLayout);
-            image_air = (ImageView) view.findViewById(R.id.ic_air);
-            card_view = (CardView) view.findViewById(R.id.card_view);
-            txtReviewPolicy = (TextView) view.findViewById(R.id.reviewPolicy);
-            boydLayout=(RelativeLayout) view.findViewById(R.id.boydLayout);
-            wirelessLayout = (RelativeLayout) view.findViewById(R.id.wirelessLayout);
+            ButterKnife.bind(this, view);
+
         }
     }
 
-    public class DefaultViewHolder extends RecyclerView.ViewHolder {
-
-        TextView txtviewProductName,txtViewDetail1,txtReviewPolicy;
-        ImageView imageView_product;
+    class DefaultViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.productImage)
+        ImageView iv_productImage;
+        @BindView(R.id.productName)
+        TextView tv_productName;
+        @BindView(R.id.reviewPolicy)
+        TextView tv_reviewPolicy;
+        @BindView(R.id.layout)
+        RelativeLayout layout;
+        @BindView(R.id.cb3)
+        CheckBox chk3;
+        @BindView(R.id.snapPicture)
+        Button btnSnapPicture;
+        @BindView(R.id.detailsLayout)
+        LinearLayout detailsLayout;
+        @BindView(R.id.boydLayout)
         RelativeLayout boydLayout;
+        @BindView(R.id.card_view)
+        CardView cardView;
 
-        public DefaultViewHolder(View view) {
+        DefaultViewHolder(View view) {
             super(view);
-            txtviewProductName = (TextView) view.findViewById(R.id.productName);
-            txtViewDetail1 = (TextView) view.findViewById(R.id.detail1);
-            imageView_product = (ImageView) view.findViewById(R.id.productImage);
-            txtReviewPolicy = (TextView) view.findViewById(R.id.reviewPolicy);
-            boydLayout=(RelativeLayout) view.findViewById(R.id.boydLayout);
-
+            ButterKnife.bind(this, view);
         }
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType==1) {
+        if (viewType == 1) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.productdetails_item_layout, parent, false);
             return new MyViewHolder(itemView);
-        }else {
+        } else {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.boyd_item_layout, parent, false);
             return new DefaultViewHolder(itemView);
         }
@@ -105,52 +117,51 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ProductDataModel productDataModel = subList.get(position);
 
 
-
         if (holder1 instanceof MyViewHolder) {
 
             MyViewHolder holder = (MyViewHolder) holder1;
-            holder.txtProductType.setText(productDataModel.getProductType());
-            holder.txtviewProductName.setText(productDataModel.getProductName());
+            holder.tv_productType.setText(productDataModel.getProductType());
+            holder.tv_productName.setText(productDataModel.getProductName());
 
             switch (productDataModel.getProductType()) {
                 case "WireLess":
-                    holder.imageView_product.setImageResource(R.drawable.ic_wifi);
-                    holder.txtViewDetail1.setText("Phone number:+1(463)628-489");
-                    holder.txtViewDetail2.setText("Model:iPhone 7 plus");
+                    holder.iv_productImage.setImageResource(R.drawable.ic_wifi);
+                    holder.tv_details1.setText("Phone number:+1(463)628-489");
+                    holder.tv_detail2.setText("Model:iPhone 7 plus");
                     holder.btnCost.setVisibility(View.VISIBLE);
-                    holder.txtMdmProductName.setVisibility(View.GONE);
-                    holder.txtMdmDetails.setVisibility(View.GONE);
-                    holder.image_air.setVisibility(View.GONE);
-
+                    holder.tv_mdmProductName.setVisibility(View.GONE);
+                    holder.tv_mdmDetails.setVisibility(View.GONE);
+                    holder.iv_airImage.setVisibility(View.GONE);
                     break;
+
                 case "MDM":
-
-                    holder.txtviewProductName.setVisibility(View.GONE);
-                    holder.relativeLayout.setVisibility(View.VISIBLE);
-                    holder.txtMdmProductName.setText(productDataModel.getProductName());
-                    holder.txtMdmDetails.setText(productDataModel.getDetails());
-                    holder.imageView_product.setImageResource(R.drawable.ic_phone_mdm);
-                    holder.txtViewDetail1.setText("IMEI:6738389939");
-                    holder.txtViewDetail2.setText("Serial number:GHS3883H93");
+                    holder.tv_productName.setVisibility(View.GONE);
+                    holder.relativelayout.setVisibility(View.VISIBLE);
+                    holder.tv_mdmProductName.setText(productDataModel.getProductName());
+                    holder.tv_mdmDetails.setText(productDataModel.getDetails());
+                    holder.iv_productImage.setImageResource(R.drawable.ic_phone_mdm);
+                    holder.tv_details1.setText("IMEI:6738389939");
+                    holder.tv_detail2.setText("Serial number:GHS3883H93");
                     holder.btnCost.setVisibility(View.GONE);
                     break;
+
                 case "SmartPhone":
-                    holder.imageView_product.setImageResource(R.drawable.ic_phone);
-                    holder.txtviewProductName.setText(productDataModel.getDetails());
-                    holder.txtViewDetail1.setText("IMEI:6738389939");
-                    holder.txtViewDetail2.setText("Serial number:GHS3883H93");
+                    holder.iv_productImage.setImageResource(R.drawable.ic_phone);
+                    holder.tv_productName.setText(productDataModel.getDetails());
+                    holder.tv_details1.setText("IMEI:6738389939");
+                    holder.tv_detail2.setText("Serial number:GHS3883H93");
                     holder.btnCost.setVisibility(View.GONE);
-                    holder.txtMdmProductName.setVisibility(View.GONE);
-                    holder.txtMdmDetails.setVisibility(View.GONE);
-                    holder.image_air.setVisibility(View.GONE);
+                    holder.tv_mdmProductName.setVisibility(View.GONE);
+                    holder.tv_mdmDetails.setVisibility(View.GONE);
+                    holder.iv_airImage.setVisibility(View.GONE);
                     break;
             }
-        }else {
-            DefaultViewHolder holder = (DefaultViewHolder) holder1;
-            holder.txtviewProductName.setText("BOYD");
+        } else {
 
-            holder.txtReviewPolicy.setPaintFlags(holder.txtReviewPolicy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            holder.txtReviewPolicy.setTextColor(context.getResources().getColor(R.color.blue));
+            DefaultViewHolder holder = (DefaultViewHolder) holder1;
+            holder.tv_productName.setText("BOYD");
+            holder.tv_reviewPolicy.setPaintFlags(holder.tv_reviewPolicy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.tv_reviewPolicy.setTextColor(context.getResources().getColor(R.color.blue));
         }
 
 
@@ -158,22 +169,22 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemViewType(int position) {
-        switch (subList.get(position).getProductType())
-        {
+        switch (subList.get(position).getProductType()) {
             case "WireLess":
             case "SmartPhone":
             case "MDM":
                 return 1;
             default:
-                   return 2;
+                return 2;
 
         }
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return subList.size();
     }
+
+
 }
 

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -14,7 +13,8 @@ import com.sampleproject.R;
 import com.sampleproject.adapter.ProductDetailsAdapter;
 import com.sampleproject.dataModel.DataModel;
 
-import java.util.ArrayList;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by apple on 17/04/18.
@@ -22,10 +22,13 @@ import java.util.ArrayList;
 
 public class DetailsActivity extends Activity {
 
-    TextView txtTitle;
-    RecyclerView mRecyclerView;
-    FloatingActionButton mFloatingActionButton;
+
     RecyclerView.LayoutManager layoutManager;
+    @BindView(R.id.title)
+    TextView tvTitle;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
     String jsonItemObj;
     DataModel dataModelObj;
 
@@ -33,7 +36,9 @@ public class DetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-          // fetch data from intent deserialize class object
+        ButterKnife.bind(this);
+
+        // fetch data from intent deserialize class object
         jsonItemObj = getIntent().getStringExtra("itemObj");
         dataModelObj = new Gson().fromJson(jsonItemObj, DataModel.class);
 
@@ -44,19 +49,15 @@ public class DetailsActivity extends Activity {
     }
 
     private void initViews() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
-        txtTitle = (TextView)findViewById(R.id.title);
         mRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-
     }
 
     private void showData() {
 
-        txtTitle.setText(dataModelObj.getTitle());
-        ProductDetailsAdapter adapter = new ProductDetailsAdapter(dataModelObj.getProduct(),this);
+        tvTitle.setText(dataModelObj.getTitle());
+        ProductDetailsAdapter adapter = new ProductDetailsAdapter(dataModelObj.getProduct(), this);
         mRecyclerView.setAdapter(adapter);
 
     }
