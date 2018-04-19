@@ -28,40 +28,18 @@ public class JobSchedulerActivity extends Activity {
 
         JobInfo.Builder builder = new JobInfo.Builder(1,
                 new ComponentName(getPackageName(),JobSchedulerService.class.getName()));
-        builder.setPeriodic(5000);
+//        builder.setPeriodic(5000);
 
 //        builder.setMinimumLatency(1 * 1000); // wait at least
 //        builder.setOverrideDeadline(3 * 1000); // maximum delay
-        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require unmetered network
-        //builder.setRequiresDeviceIdle(true); // device should be idle
-        //builder.setRequiresCharging(false); // we don't care if the device is charging or not
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // require  network
+//        builder.setRequiresDeviceIdle(true); // device should be idle
+        builder.setRequiresCharging(true); // we don't care if the device is charging or not
 
         jobInfo = builder.build();
 
 
     }
-
-
-
-//    @Override
-//    protected void onStop() {
-//        // A service can be "started" and/or "bound". In this case, it's "started" by this Activity
-//        // and "bound" to the JobScheduler (also called "Scheduled" by the JobScheduler). This call
-//        // to stopService() won't prevent scheduled jobs to be processed. However, failing
-//        // to call stopService() would keep it alive indefinitely.
-//        stopService(new Intent(this, JobSchedulerService.class));
-//        super.onStop();
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        // Start service and provide it a way to communicate with this class.
-//        Intent startServiceIntent = new Intent(this, JobSchedulerService.class);
-////        Messenger messengerIncoming = new Messenger(mHandler);
-////        startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
-//        startService(startServiceIntent);
-//    }
 
     public void scheduleJob(View view) {
 

@@ -26,7 +26,7 @@ public class JobSchedulerService extends JobService {
             protected void onPostExecute(String s) {
                 Log.d("DoItTask", "Clean up the task here and call jobFinished...");
                 Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
-                jobFinished(params, false);  // call job finish one background task is done.
+                jobFinished(params, false);  // call job finish once background task is done.
                 super.onPostExecute(s);
             }
         };
