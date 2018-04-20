@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:weightSum="3"
+
     android:id="@+id/mainLayout"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">

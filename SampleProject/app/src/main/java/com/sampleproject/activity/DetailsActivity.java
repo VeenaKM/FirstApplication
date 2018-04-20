@@ -4,7 +4,6 @@ package com.sampleproject.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -16,7 +15,6 @@ import com.google.gson.Gson;
 import com.sampleproject.R;
 import com.sampleproject.adapter.ProductDetailsAdapter;
 import com.sampleproject.dataModel.DataModel;
-import com.sampleproject.service.JobSchedulerService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,7 +97,7 @@ public class DetailsActivity extends Activity {
     }
 
     private void gotoJobSchedulerActivity() {
-        Intent intent = new Intent(DetailsActivity.this, JobSchedulerActivity.class);
+        Intent intent = new Intent(DetailsActivity.this, FirebaseJobActivity.class);
         startActivity(intent);
     }
 

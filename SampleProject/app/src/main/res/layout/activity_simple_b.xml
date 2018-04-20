@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_margin="30dp"
-
         android:transitionName="simple_activity_transition"
         android:src="@drawable/lion"
         />

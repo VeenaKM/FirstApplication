@@ -26,4 +26,9 @@
         android:background="@drawable/btn_view"
         android:layout_margin="10dp"
         android:id="@+id/cancelJob"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/image"/>
 </LinearLayout>
